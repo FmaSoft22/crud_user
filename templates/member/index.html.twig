@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <!-- content -->
+    <div class="container">
+
+        <div class="row my-4">
+            <div class="col-md-12">
+                <h1 class="text-center">Système de Gestion des utilisateurs</h1>
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col-md-12">
+                <a href="{{ path('app_new_member') }}" style="cursor: pointer;">
+                    <button class="btn btn-dark">
+                        <i class="fa fa-plus">Nouvel utilisateur</i>
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="container mt-3">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row col-md-12">
+            {% if members|length > 0 %}
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="card m-2">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-custom table-lg mb-0" id="shopping-cart">
+                                        <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Nom & Prénom(s)</th>
+                                            <th>Email</th>
+                                            <th>Pays</th>
+                                            <th>Tél</th>
+                                            <th colspan="2">Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for member in members %}
+                                            <tr>
+                                                <td>
+                                                  {% if member.photo is not empty %}
+                                                        <img src="/uploads/member/{{ member.photo }}" class="rounded" width="60" alt="...">
+                                                  {% else %}
+                                                      <img src="/assets/default.jpg" class="rounded" width="60" alt="...">
+                                                  {% endif %}
+                                                </td>
+                                                <td>{{ member.title ~ ' ' ~ member.firstname ~ ' ' ~ member.lastname }}</td>
+                                                <td>{{ member.emailAddress}}</td>
+                                                <td>
+                                                    {% if member.country and member.town %}
+                                                        <span>{{ member.country}}({{ member.town }})</span>
+                                                    {% elseif member.country %}
+                                                        <span>{{ member.country}}</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>{{ member.phone}}</td>
+                                                 <td class="text-end">
+                                                     <a href="{{ path('app_delete_member',{id:member.id}) }}">
+                                                         <button class="btn btn-sm btn-outline-danger flex-shrink-0">
+                                                             <i class="bi bi-trash"></i>
+                                                         </button>
+                                                     </a>
+                                                     <a href="{{ path('app_update_member',{id:member.id}) }}">
+                                                         <button class="btn btn-sm btn-outline-primary flex-shrink-0">
+                                                             <i class="bi bi-pencil"></i>
+                                                         </button>
+                                                     </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            {% else %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-body">
+                            <a style="cursor: pointer;" class="showlogin active">Aucun utilisateur disponible</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <!-- ./ content -->
+
+{% endblock %}

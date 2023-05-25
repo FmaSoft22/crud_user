@@ -1,19 +1,81 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<!doctype html>
+<html lang="fr">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gestion des utilisateurs</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/assets/images/favicon.png"/>
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="/assets/dist/icons/bootstrap-icons-1.4.0/bootstrap-icons.min.css" type="text/css">
+    <!-- Bootstrap Docs -->
+    <link rel="stylesheet" href="/assets/dist/css/bootstrap-docs.css" type="text/css">
+
+    <!-- Form wizard -->
+    <link rel="stylesheet" href="/assets/libs/form-wizard/jquery.steps.css" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <!-- Slick -->
+    <link rel="stylesheet" href="/assets/libs/slick/slick.css" type="text/css">
+    <link rel="stylesheet" href="/assets/libs/slick/slick-theme.css">
+
+    <link rel="stylesheet" href="/assets/dist/css/app.min.css" type="text/css">
+
+    <style>
+        label.ck-label{
+            display: none !important;
+        }
+    </style>
+
+
+</head>
+<body  style="
+ background: -webkit-gradient(linear, left top, right top, from(#F1F2FA), to(#FCEDF1));">
+
+<!-- layout-wrapper -->
+
+<div>
+
+    {% block body %}{% endblock %}
+
+</div>
+
+{% block javascripts %}
+    <!-- Bundle scripts -->
+    <script src="/assets/libs/bundle.js"></script>
+    <!-- Slick -->
+    <script src="/assets/libs/slick/slick.min.js"></script>
+
+    <!-- Examples -->
+    <script src="/assets/dist/js/examples/dashboard.js"></script>
+
+    <!-- Examples -->
+    <script src="/assets/dist/js/examples/product-detail.js"></script>
+
+    <!-- Form wizard -->
+    <script src="/assets/libs/form-wizard/jquery.steps.min.js"></script>
+
+    <!-- Examples -->
+    <script src="/assets/dist/js/examples/checkout.js"></script>
+
+    <!-- Main Javascript file -->
+    <script src="/assets/dist/js/app.min.js"></script>
+
+    <script src="/assets/libs/ckeditor5/ckeditor.js"></script>
+
+    <script src="js/member.js"></script>
+
+{% endblock %}
+
+</body>
+
 </html>

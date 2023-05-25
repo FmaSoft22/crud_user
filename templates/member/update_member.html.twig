@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="container my-4">
+        <div class="row">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{{ path('app_welcome') }}">
+                                <i class="bi bi-globe2 small me-2"></i> Accueil
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Modifier utilisateur - {{ member.title ~ ' ' ~ member.firstname }}</li>
+                    </ol>
+                </nav>
+            </div>
+            {{ form_start(form) }}
+            {{ form_widget(form._token) }}
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="c">
+                        <h3>Informations générales</h3>
+                        <section class="card card-body mb-0">
+                            <div class="mb-4">
+                                <h6 class="card-title mb-3">Infos générales</h6>
+                            </div>
+                            <div class="row g-4 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Civilité</label>
+                                    {{ form_widget(form.title) }}
+                                </div>
+                            </div>
+                            <div class="row g-4 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Nom</label>
+                                    {{ form_widget(form.firstname) }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Prénom(s)</label>
+                                    {{ form_widget(form.lastname) }}
+                                </div>
+                            </div>
+                            <div class="row g-4 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Pays</label>
+                                    {{ form_widget(form.country) }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Ville</label>
+                                    {{ form_widget(form.town) }}
+                                </div>
+                            </div>
+                            <div class="row g-4 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    {{ form_widget(form.emailAddress) }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Téléphone</label>
+                                    {{ form_widget(form.phone) }}
+                                </div>
+                            </div>
+                            <div class="row g-4 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Adresse complète</label>
+                                    {{ form_widget(form.address) }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Code Postale</label>
+                                    {{ form_widget(form.postalCode) }}
+                                </div>
+                            </div>
+                            <div class="row g-4 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Date de naissance</label>
+                                    {{ form_widget(form.dateOfBirth) }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Photo de profil&nbsp;
+                                        {% if member.photo is not empty %}
+                                            <a download href="/uploads/member/{{ member.photo }}">
+                                                <span><i class="bi bi-eye"></i></span>
+                                            </a>
+                                        {% endif %}</label>
+                                    {{ form_widget(form.file) }}
+                                    <div class="mt-2">
+                                        <span style="color:red;">NB: L'ajout d'une nouvelle photo remplacera l'ancienne</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="flex-end my-2">
+                                <button type="submit" class="btn btn-success">Soumettre</button>
+                            </div>
+
+                        </section>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form,{render_rest:false}) }}
+        </div>
+    </div>
+{% endblock %}
